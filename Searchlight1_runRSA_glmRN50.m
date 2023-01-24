@@ -34,7 +34,7 @@ for iRun = 1:nRuns
     data_fn = fullfile(dataDir, sprintf('t_Travel_run00%d_SS%d_aligned-subject-standard-2mm.nii.gz', iRun, smoothingVal));
     ds{iRun} = cosmo_fmri_dataset(data_fn, 'mask', mask_fn,'targets',1:72,'chunks',iRun);
 end
-
+% average data across runs
 dsGroup = cosmo_stack(ds);
 dsGroup = cosmo_remove_useless_data(dsGroup);
 dsGroup = cosmo_fx(dsGroup,@(x)mean(x,1), 'targets', 1);  
