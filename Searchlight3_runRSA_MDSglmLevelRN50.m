@@ -42,14 +42,16 @@ for iRun = 1:nRuns
     ds{iRun} = cosmo_fmri_dataset(data_fn, 'mask', mask_fn,'targets',1:72,'chunks',iRun);
 end
 
+% average data cross runs
 dsGroup = cosmo_stack(ds);
 dsGroup = cosmo_remove_useless_data(dsGroup);
 dsGroup = cosmo_fx(dsGroup,@(x)mean(x,1), 'targets', 1);
 
 %% Set measure for searchlight-RSA analysis
-modelTypeToDSM{1}=mdsdsm;
-modelTypeToDSM{2}=dsm;
-modelTypeToDSM{3}=modeldsm;
+modelTypeToDSM{1}=mdsdsm; % behavioral RDM
+modelTypeToDSM{2}=dsm; % one of the model RDMs (e.g., subordinate model RDM)
+modelTypeToDSM{3}=modeldsm; % visual control model
+
 % set the method for searchlight
 measure = @cosmo_target_dsm_corr_measure;
 measure_args = struct();
