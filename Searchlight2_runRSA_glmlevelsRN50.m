@@ -5,8 +5,9 @@ function Searchlight2_runRSA_glmlevelsRN50(subjectID)
 % corresponding to the other two taxonomic levels (e.g. the basic and the 
 % superordinate level) and the ResNet50_conv1 control model. 
 
-%% set path
+%% add path
 addpath('/Users/zhuang/EEGNet/results_ica/npy-matlab-master/npy-matlab');
+
 %set parameters
 fprintf('Starting with subject %s\n', subjectID);
 nRuns = 6;
@@ -22,6 +23,7 @@ outputDir = fullfile(rsaDir, 'RSA_glmlevelsRN50');
 %% load mask
 standardDir = '/usr/local/fsl/data/standard';
 mask_fn = fullfile(standardDir, 'MNI152_T1_2mm_brain_mask.nii.gz');
+
 %% load the visual model
 modeldir='/Users/zhuang/Documents/MRI/Projects/Travel/data/Resnet50/outputs/';
 matrixnames=dir([modeldir,'*.npy']);
@@ -44,15 +46,19 @@ for iRun = 1:nRuns
     ds{iRun} = cosmo_fmri_dataset(data_fn, 'mask', mask_fn,'targets',1:72,'chunks',iRun);
 end
 
+% average data across runs
 dsGroup = cosmo_stack(ds);
 dsGroup = cosmo_remove_useless_data(dsGroup);
 dsGroup = cosmo_fx(dsGroup,@(x)mean(x,1), 'targets', 1);
 
 %% Set measure for searchlight-RSA analysis
+% load model RDMs: 
+% 1: superordinate model RDM 2: basic model 3: subordinate model 4: visual control model
 modelTypeToDSM{1}=super.dsm;
 modelTypeToDSM{2}=basic.dsm;
 modelTypeToDSM{3}=sub.dsm;
 modelTypeToDSM{4}=modeldsm;
+
 % set the method for searchlight
 measure = @cosmo_target_dsm_corr_measure;
 measure_args = struct();
@@ -66,8 +72,10 @@ nvoxels_per_searchlight=100;
 fprintf('Creating neighborhoods\n')
 nbrhood = cosmo_spherical_neighborhood(dsGroup, 'count', nvoxels_per_searchlight);
 
-%run searchlight
+%% run searchlight
 fprintf('Starting glm searchlight with size %g voxels per searchlight\n', nvoxels_per_searchlight)
+% get glm results for different level 
+% (unique information from superordinate-1st row, basic-2nd row, sub-3rd row, visual control model-4th row).
 glm_res = cosmo_searchlight(dsGroup, nbrhood, measure, measure_args);
 
 %Save the data
