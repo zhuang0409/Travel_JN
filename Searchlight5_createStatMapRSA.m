@@ -29,14 +29,14 @@ for iSub = 1:nSubs
     % create maps based on different types of glm RSA analysis
     switch level % to determine which types of glm-rsa analysis
         case {'sub_RN50','basic_RN50','super_RN50','MDS_RN50'}
-        % because the output of brain maps from 'sub_RN50','basic_RN50','super_RN50','MDS_RN50' are two rows results, 
+        % because the output of brain maps from 'sub_RN50','basic_RN50','super_RN50','MDS_RN50' are two rows results, targets are labeled as 1 and 2
         % the first row is the glm-rsa result of one level model regressing out visual control model
         % the second row is the glm-rsa result of visual control model regressing out one level model
             alignedGroupMap{iSub}.sa.targets = [1 2]';
             alignedGroupMap{iSub}.sa.chunks = zeros(2,1)+iSub;
             
         case {'levels_RN50'}
-        % because the output of brain maps from 'levels_RN50' are four rows results, 
+        % because the output of brain maps from 'levels_RN50' are four rows results, targets are labeled as 1,2,3, and 4
         % the first row is the glm-rsa result of superordinate model regressing out the other two and visual control model
         % the second row is the glm-rsa results of basic model regressing out the other two and visual control model
         % the third row is the glm-rsa results of subordinate model regressing out the other two and visual control model
@@ -45,7 +45,7 @@ for iSub = 1:nSubs
             alignedGroupMap{iSub}.sa.chunks = zeros(4,1)+iSub;
     
         case {'mds_sub_RN50','mds_basic_RN50','mds_super_RN50'}
-        % because the output of brain maps from 'mds_sub_RN50','mds_basic_RN50','mds_super_RN50' are three rows results, 
+        % because the output of brain maps from 'mds_sub_RN50','mds_basic_RN50','mds_super_RN50' are three rows results, targets are labeled as 1,2 and 3
         % the first row is the glm-rsa result of behavioral model (mds) regressing out one level model and visual control model
         % the second row is the glm-rsa result of one level model regressing out behavioral model (mds) and visual control model
         % the third row is the glm-rsa result of visual control model regressing out behavioral model (mds) and one level model
