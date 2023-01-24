@@ -67,6 +67,10 @@ nbrhood = cosmo_spherical_neighborhood(dsGroup, 'count', nvoxels_per_searchlight
 
 %run searchlight
 fprintf('Starting glm searchlight with size %g voxels per searchlight\n', nvoxels_per_searchlight)
+% get three rows glm-rsa results
+% 1st row: glm-rsa results of behavioral model (mds) regressing out one-level model (e.g., superordinate model) and visual control model
+% 2nd row: glm-rsa results of one-level model (e.g., superordinate model) regressing out behavioral model (mds) and visual control model
+% 3rd row: glm-rsa results of visual control model regressing out behavioral model (mds) and one-level model (e.g., superordinate model)
 glm_res = cosmo_searchlight(dsGroup, nbrhood, measure, measure_args);
 
 %Save the data
