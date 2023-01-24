@@ -73,7 +73,7 @@ nbrhood = cosmo_spherical_neighborhood(dsGroup, 'count', nvoxels_per_searchlight
 
 %% run searchlight
 fprintf('Starting glm searchlight with size %g voxels per searchlight\n', nvoxels_per_searchlight)
-% get glm results for different levels 
+% get four rows glm-rsa results for different models
 % (unique information from superordinate-1st row, basic-2nd row, sub-3rd row, visual control model-4th row).
 glm_res = cosmo_searchlight(dsGroup, nbrhood, measure, measure_args);
 
