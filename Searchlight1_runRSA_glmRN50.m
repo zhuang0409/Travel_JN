@@ -3,13 +3,9 @@ function Searchlight1_runRSA_glmRN50(subjectID,level)
 % and regressed outthe visual control model
 % subjectID:Id of subject; 
 % level: 'super'/'basic'/'sub'/'humanRating_mds'
+
 %% setpath
 addpath('/Users/zhuang/EEGNet/results_ica/npy-matlab-master/npy-matlab');
-%% set parameters
-fprintf('Starting with subject %s\n', subjectID);
-nRuns = 6;
-smoothingVal = 0;
-
 %% FOLDER
 projectDir = '/Users/zhuang/Documents/MRI/Projects/Travel/data/ExemData/UnSmoothed/';
 targetDir = fullfile(projectDir, subjectID);
@@ -27,6 +23,11 @@ matrixnames=dir([modeldir,'*.npy']);
 data= readNPY([modeldir,matrixnames(1).name]);
 % using RN_reshape_to_fMRI to keep the order of stimuli identically
 modeldsm=squareform(RN_reshape_to_fMRI(squeeze(data(1,:,:))));
+
+%% set parameters
+fprintf('Starting with subject %s\n', subjectID);
+nRuns = 6;
+smoothingVal = 0;
 
 %% load data from different runs
 ds = cell(nRuns,1);
@@ -46,7 +47,7 @@ load([dsmdir,level '.mat']);% get dsm
 %% Set measure for searchlight-RSA analysis
 modelTypeToDSM{1}=dsm;
 % set the model for regressing
-modelTypeToDSM{2}=modeldsm;
+modelTypeToDSM{2}=modeldsm;% visual control model
 % set the method for searchlight
 measure = @cosmo_target_dsm_corr_measure;
 measure_args = struct();
@@ -62,6 +63,9 @@ nbrhood = cosmo_spherical_neighborhood(dsGroup, 'count', nvoxels_per_searchlight
 
 %run searchlight
 fprintf('Starting glm searchlight with size %g voxels per searchlight\n', nvoxels_per_searchlight)
+% get two rows glm-rsa results: 
+% 1st row- glm-rsa results of one level model regressing out visual control model
+% 2nd row- glm-rsa results of visual control model regressing out one level model
 glm_res = cosmo_searchlight(dsGroup, nbrhood, measure, measure_args);
 
 %Save the data
