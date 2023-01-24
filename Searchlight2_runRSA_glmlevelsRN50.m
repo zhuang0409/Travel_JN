@@ -68,13 +68,12 @@ measure_args.metric='squaredeuclidean';
 
 % for the searchlight, define neighborhood for each feature (voxel).
 nvoxels_per_searchlight=100;
-% choose radius for searchlight, find neighborhoods
 fprintf('Creating neighborhoods\n')
 nbrhood = cosmo_spherical_neighborhood(dsGroup, 'count', nvoxels_per_searchlight);
 
 %% run searchlight
 fprintf('Starting glm searchlight with size %g voxels per searchlight\n', nvoxels_per_searchlight)
-% get glm results for different level 
+% get glm results for different levels 
 % (unique information from superordinate-1st row, basic-2nd row, sub-3rd row, visual control model-4th row).
 glm_res = cosmo_searchlight(dsGroup, nbrhood, measure, measure_args);
 
