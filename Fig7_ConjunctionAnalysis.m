@@ -29,8 +29,7 @@ ds_sub = cosmo_fmri_dataset(sub_dsfn,'mask',mask_fn);
 ds_conj_SubBasic=min(ds_basic.samples,ds_sub.samples);
 
 % conjunct of three taxonomic level: to get the min t across super, basic, sub.
-ds_conj=min(ds_basic.samples,ds_super.samples);
-ds_conj_all=min(ds_conj,ds_sub.samples);
+ds_conj_all=min([ds_super.samples(:)';ds_basic.samples(:)';ds_sub.samples(:)']);
 
 % binary data
 ds_conj_all(ds_conj_all>0) = 1;
