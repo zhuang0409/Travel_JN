@@ -24,6 +24,10 @@ data= readNPY([modeldir,matrixnames(1).name]);
 % using RN_reshape_to_fMRI to keep the order of stimuli identically
 modeldsm=squareform(RN_reshape_to_fMRI(squeeze(data(1,:,:))));
 
+%% place RDM
+load('places_last2nd.mat');
+placesdsm=targetlayer_dsm;
+
 %% set parameters
 fprintf('Starting with subject %s\n', subjectID);
 nRuns = 6;
