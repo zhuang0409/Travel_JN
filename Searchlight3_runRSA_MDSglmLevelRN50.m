@@ -55,11 +55,12 @@ dsGroup = cosmo_fx(dsGroup,@(x)mean(x,1), 'targets', 1);
 modelTypeToDSM{1}=mdsdsm; % behavioral RDM
 modelTypeToDSM{2}=dsm; % one of the model RDMs (e.g., subordinate model RDM)
 modelTypeToDSM{3}=modeldsm; % visual control model
+modelTypeToDSM{4}=placesdsm; % place RDM
 
 % set the method for searchlight
 measure = @cosmo_target_dsm_corr_measure;
 measure_args = struct();
-measure_args.glm_dsm = {modelTypeToDSM{1}, modelTypeToDSM{2}, modelTypeToDSM{3}};
+measure_args.glm_dsm = {modelTypeToDSM{1}, modelTypeToDSM{2}, modelTypeToDSM{3}, modelTypeToDSM{4}};
 measure_args.center_data = true;
 measure_args.metric='squaredeuclidean';
 
