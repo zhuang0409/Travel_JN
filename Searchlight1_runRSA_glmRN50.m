@@ -56,7 +56,7 @@ modelTypeToDSM{3}=placesdsm; % place RDM
 % set the method for searchlight
 measure = @cosmo_target_dsm_corr_measure;
 measure_args = struct();
-measure_args.glm_dsm = {modelTypeToDSM{1}, modelTypeToDSM{2}};
+measure_args.glm_dsm = {modelTypeToDSM{1}, modelTypeToDSM{2}, modelTypeToDSM{3}};
 measure_args.center_data = true;
 measure_args.metric='squaredeuclidean';
 
