@@ -13,6 +13,7 @@ Here are the models and codes for the paper of The representation of observed ac
 
   humanRating_mds: the model obtained from human-rating experiment.
 
+  places_last2nd.mat: the place RDM obtained from the last second layer of ResNet50 pretrained with places
 
 ## Steps of programming
 
