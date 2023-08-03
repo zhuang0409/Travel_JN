@@ -52,6 +52,7 @@ load([dsmdir,level '.mat']);% get dsm
 modelTypeToDSM{1}=dsm;
 % set the model for regressing
 modelTypeToDSM{2}=modeldsm;% visual control model
+modelTypeToDSM{3}=placesdsm; % place RDM
 % set the method for searchlight
 measure = @cosmo_target_dsm_corr_measure;
 measure_args = struct();
