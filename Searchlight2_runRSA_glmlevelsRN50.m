@@ -31,6 +31,10 @@ data= readNPY([modeldir,matrixnames(1).name]);
 % using RN_reshape_to_fMRI to keep the order of stimuli identically
 modeldsm=squareform(RN_reshape_to_fMRI(squeeze(data(1,:,:))));
 
+%% place RDM
+load('places_last2nd.mat');
+placesdsm=targetlayer_dsm;
+
 %% load models of super/basic/sub
 dsmdir='/Users/zhuang/Documents/MRI/Projects/Travel/data/ExemData/progs/';
 super=load([dsmdir,'super.mat']);
