@@ -62,6 +62,7 @@ modelTypeToDSM{1}=super.dsm;
 modelTypeToDSM{2}=basic.dsm;
 modelTypeToDSM{3}=sub.dsm;
 modelTypeToDSM{4}=modeldsm;
+modelTypeToDSM{5}=placesdsm; % place RDM
 
 % set the method for searchlight
 measure = @cosmo_target_dsm_corr_measure;
