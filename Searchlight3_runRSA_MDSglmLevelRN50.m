@@ -31,6 +31,10 @@ matrixnames=dir([modeldir,'*.npy']);
 data= readNPY([modeldir,matrixnames(1).name]);
 modeldsm=squareform(RN_reshape_to_fMRI(squeeze(data(1,:,:))));
 
+%% place RDM
+load('places_last2nd.mat');
+placesdsm=targetlayer_dsm;
+
 %% load one model of super/basic/sub
 dsmdir='/Users/zhuang/Documents/MRI/Projects/Travel/data/ExemData/progs/';
 load([dsmdir,level '.mat']);
