@@ -29,7 +29,7 @@ Here are the models and codes for the paper of The representation of observed ac
 - Step 4. Searchlight6_TFCE_group.m - to make the statistic
 - Step 5. Fig7_ConjunctionAnalysis.m - to compute the conjunction analysis
 
-**Additionally, **
+**Additionally,**
 
 - vif.m: VIF analysis; 
 
