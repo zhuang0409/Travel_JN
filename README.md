@@ -17,25 +17,26 @@ Here are the models and codes for the paper of The representation of observed ac
 
 ## Steps of programming
 
-ROI-based analysis:
+**ROI-based analysis:**
 
-Fig4_ROI_analysis.m
+- Fig4_ROI_analysis.m
 
-Searchlight-based analysis:
-Step1. RSA searchlight analysis - searchlight1_xx.m/searchlight2_xx.m/searchlight3_xx.m
-Step2. Searchlight4_smoothdata.sh - smoothing data
-Step3. Searchlight5_createStatMapRSA.m - to create maps for statistics
-Step4. Searchlight6_TFCE_group.m - to make the statistic
-Step5. Fig7_ConjunctionAnalysis.m - to compute the conjunction analysis
+**Searchlight-based analysis:**
 
-Additionally, 
+- Step 1. RSA searchlight analysis - searchlight1_xx.m/searchlight2_xx.m/searchlight3_xx.m
+- Step 2. Searchlight4_smoothdata.sh - smoothing data
+- Step 3. Searchlight5_createStatMapRSA.m - to create maps for statistics
+- Step 4. Searchlight6_TFCE_group.m - to make the statistic
+- Step 5. Fig7_ConjunctionAnalysis.m - to compute the conjunction analysis
 
-vif.m: VIF analysis; 
+**Additionally, **
 
-Fig5_plot_rdm_mds.m: to visualize the regressed LOTC/V1 rdm and the corresponding mds; 
+- vif.m: VIF analysis; 
 
-Fig2_plot_rdm_mds_histogram_of_human_rating_model.m: to visualze the rdm, mds, and histogram of human-rating results.
+- Fig5_plot_rdm_mds.m: to visualize the regressed LOTC/V1 rdm and the corresponding mds; 
 
-RN_reshape_to_fMRI.m: to change the order of stimuli with the neural conditions.Due to the order of the stimuli of RN50-based RDM is different with the the neural RDM, we used this function to keep the order of stimuli consistently. 
+- Fig2_plot_rdm_mds_histogram_of_human_rating_model.m: to visualze the rdm, mds, and histogram of human-rating results.
 
-rotateXLabels.m: to rotate x axis labels.
+- RN_reshape_to_fMRI.m: to change the order of stimuli with the neural conditions.Due to the order of the stimuli of RN50-based RDM is different with the the neural RDM, we used this function to keep the order of stimuli consistently. 
+
+- rotateXLabels.m: to rotate x axis labels.
